@@ -1,22 +1,30 @@
-﻿package com.workspace {
-	import flash.display.Sprite;
-	import fl.motion.AnimatorFactory3D;
-	
-	public class Toolbar extends Sprite {
+﻿package com.workspace
+{
 
-		public function Toolbar() {
-			
-			DrawToolBar();
-			// constructor code
+	import flash.display.MovieClip;
+	import flash.events.MouseEvent;
+	import fl.controls.Button;
+
+
+	public class Toolbar extends MovieClip
+	{
+		private var _arg:int;
+
+		public function Toolbar(arg:int = 0)
+		{
+			AddItemButton.addEventListener(MouseEvent.CLICK, fl_MouseClickHandler);
+			AddItemButton.addEventListener(MouseEvent.CLICK, AddItemClick);
+			_arg = arg;
+		}
+
+		private function fl_MouseClickHandler(event:MouseEvent):void
+		{
+			trace("Button pressed; \n" + "arg = " + _arg);
 		}
 		
-		private function DrawToolBar()
+		private function AddItemClick(event:MouseEvent):void
 		{
-			this.graphics.beginFill(0x000000, 0.25);
-			this.graphics.lineStyle(2,0x000000,1);
-			this.graphics.drawRect(0,0,100,100);
 		}
-
 	}
-	
+
 }
