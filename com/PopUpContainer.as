@@ -14,6 +14,7 @@
 			//this.addEventListener(MouseEvent.MOUSE_DOWN, MouseDownHandler);
 			//this.addEventListener(MouseEvent.MOUSE_UP, MouseUpHandler);
 			//this.addEventListener(MouseEvent.MIDDLE_CLICK, MouseMiddleClickHandler);
+			//PopUpScroll.source = new MySymbol();
 		}
 
 		private function MouseDownHandler(evt:MouseEvent)

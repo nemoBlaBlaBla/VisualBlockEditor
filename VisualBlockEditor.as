@@ -86,7 +86,7 @@
 			aboutWindow.PopUpLabel.text = "about";
 			aboutWindow.x = (stage.stageWidth / 2) - (aboutWindow.width / 2);
 			aboutWindow.y = (stage.stageHeight / 2) - (aboutWindow.height / 2);
-			this.addChild(aboutWindow);
+			this.addChild(aboutWindow); //new super comment
 		}
 	}
 }
