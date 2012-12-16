@@ -20,6 +20,9 @@
 			_fullView.Param_H_edit.enabled = false;
 			
 			_helpString = "ololo";
+			
+			_infoPopUp.PopUpScroll.source = new GenerateHelp();
+			_infoPopUp.PopUpLabel.visible = false;
 		}
 	}
 	

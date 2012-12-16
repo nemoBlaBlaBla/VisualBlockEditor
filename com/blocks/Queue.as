@@ -15,6 +15,9 @@
 			_fullView.Param_F_edit.enabled = false;
 			_fullView.Param_G_edit.enabled = false;
 			_fullView.Param_H_edit.enabled = false;
+			
+			_infoPopUp.PopUpScroll.source = new QueueHelp();
+			_infoPopUp.PopUpLabel.visible = false;
 		}
 
 	}
