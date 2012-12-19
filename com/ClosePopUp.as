@@ -7,8 +7,8 @@
 		
 		public function ClosePopUp() {
 			
-			_btnClose.x = this.width - 40;
-			_btnClose.y = 10;
+			_btnClose.x = this.width;
+			_btnClose.y = -20;
 			this.addChild(_btnClose);
 			this._btnClose.addEventListener(MouseEvent.CLICK, CloseButtonClickHandler)
 		}

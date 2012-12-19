@@ -21,6 +21,8 @@
 		private var _tb:Toolbar;
 		private var _wt:Worktable = new Worktable();
 		
+		private var _messageLayer:Sprite = new Sprite();
+		
 		private var _btnbtn:Button = new Button();
 		
 		private var _myCombo:ComboBox = new ComboBox();
@@ -43,6 +45,8 @@
 			GenerateButton.addEventListener(MouseEvent.CLICK, GenerateButtonClick);
 			btnInfo.addEventListener(MouseEvent.CLICK, InfoButtonClickHandler);
 			btnAbout.addEventListener(MouseEvent.CLICK, AboutButtonClickHandler)
+			
+			this.addChild(_messageLayer);
 		}
 
 		private function InitWorkSpace()
@@ -72,21 +76,27 @@
 
 		private function InfoButtonClickHandler(evt:MouseEvent)
 		{
+			_messageLayer.removeChildren();
 			var infoWindow:ClosePopUp = new ClosePopUp();
-			infoWindow.PopUpLabel.text = "info";
+			//infoWindow.PopUpLabel.text = "info";
+			infoWindow.PopUpLabel.visible = false;
+			infoWindow.PopUpScroll.source = new Info();
 			infoWindow.x = (stage.stageWidth / 2) - (infoWindow.width / 2);
-			infoWindow.y = (stage.stageHeight / 2) - (infoWindow.height / 2);
-			this.addChild(infoWindow);
+			infoWindow.y = (stage.stageHeight / 2) - 150;
+			_messageLayer.addChild(infoWindow);
 			
 		}
 		
 		private function AboutButtonClickHandler(evt:MouseEvent)
 		{
+			_messageLayer.removeChildren();
 			var aboutWindow:ClosePopUp = new ClosePopUp();
-			aboutWindow.PopUpLabel.text = "about";
+			//aboutWindow.PopUpLabel.text = "about";
+			aboutWindow.PopUpLabel.visible = false;
+			aboutWindow.PopUpScroll.source = new About();
 			aboutWindow.x = (stage.stageWidth / 2) - (aboutWindow.width / 2);
 			aboutWindow.y = (stage.stageHeight / 2) - (aboutWindow.height / 2);
-			this.addChild(aboutWindow); //new super comment
+			_messageLayer.addChild(aboutWindow); //new super comment
 		}
 	}
 }
