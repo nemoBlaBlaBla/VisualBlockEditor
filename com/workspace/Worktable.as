@@ -5,34 +5,25 @@
 	import com.blocks.Generate;
 	import com.PopUpContainer;
 	import flash.text.TextField;
-	import fl.controls.Label;
 	import com.blocks.*;
 	import flash.events.MouseEvent;
 	import com.ClosePopUp;
 
 	public class Worktable extends Sprite
 	{
-
-		private var _app:VisualBlockEditor;
-		private var _blockList:Vector.<Block> = new Vector.<Block>();
-		private var _popUpsLayer:Sprite = new Sprite();
-		private var _blocksLayer:Sprite = new Sprite();
+		private var _popUpsLayer:Sprite = new Sprite();//слой для окон-подсказок
+		private var _blocksLayer:Sprite = new Sprite();//слой для отображения блоков
 
 		public function Worktable()
 		{
-			DrawWorktable();
+			//добавляем слои на спрайт
 			this.addChild(_blocksLayer);
 			this.addChild(_popUpsLayer);
-			this.addEventListener(MouseEvent.CLICK, MouseClickHandler);
-		}
-
-		private function DrawWorktable()
-		{
-
 		}
 
 		public function AddBlock(itemLabel:String)
 		{
+			//добавляем блоки на робочую область
 			if (itemLabel == "JustABlock"){_blocksLayer.addChild(new Block());}
 			if (itemLabel == "GENERATE"){_blocksLayer.addChild(new Generate());}
 			if (itemLabel == "ADVANCE"){_blocksLayer.addChild(new Advance());}
@@ -51,16 +42,24 @@
 
 		public function GetGPSSCode()
 		{
+			//очищаем слой подсказок
 			_popUpsLayer.removeChildren();
+			//создаем список добавленных блоков
 			var blockList:Array = new Array();
+			//создаем окно и текстовое поле
 			var codePopUp:PopUpContainer = new ClosePopUp();
 			var tf:TextField = new TextField();
 			
+			//заполяем список отображаемыми блоками
 			for (var i:int = 0; i < _blocksLayer.numChildren; i++)
 			{
 				blockList.push(_blocksLayer.getChildAt(i));
 			}
+			
+			//сортируем блоки по параметру "y", то есть по высоте положения на экране
 			blockList.sortOn("y", Array.NUMERIC);
+			//далее для каждого блока считываем его кусочек кода, который он сформировал.
+			//И добавляем код в текстовое поле
 			for (var j:int = 0; j < blockList.length; j++)
 			{
 				try
@@ -72,18 +71,15 @@
 					trace(err.errorID + "\n" + err.name + "\n" + err.message);
 				}
 			}
+			//помещаем текстовое поле на окно-подсказку, 
+			//включаем возможность выделения
 			codePopUp.PopUpLabel.text = tf.text;
 			codePopUp.PopUpLabel.selectable = true;
+			//вычисляем координаты окна, чтобы оно было посередине.
 			codePopUp.x = (stage.stageWidth / 2) - (codePopUp.width / 2);
 			codePopUp.y = (stage.stageHeight / 2) - (codePopUp.height / 2);
+			//отображаем окно с кодом
 			_popUpsLayer.addChild(codePopUp);
 		}
-		
-		private function MouseClickHandler(evt:MouseEvent)
-		{
-			//_popUpsLayer.removeChildren();
-		}
-
 	}
-
 }
